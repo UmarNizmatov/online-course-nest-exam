@@ -39,8 +39,14 @@ export class ModulesService {
     return module;
   }
 
-  async findAll() {
-    return await this.moduleRepo.find();
+  async findAll(userId: string, role: string) {
+    if (role === 'teacher') {
+      return this.moduleRepo.find({
+        where: { course: { teacher: { id: userId } } },
+        relations: ['course'],
+      });
+    }
+    return this.moduleRepo.find({ relations: ['course'] });
   }
 
   async findOne(id: string) {
