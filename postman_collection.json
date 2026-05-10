@@ -111,10 +111,9 @@
         {
           "name": "Get Course Modules",
           "request": {
-            "auth": { "type": "noauth" },
             "method": "GET",
             "url": { "raw": "{{baseUrl}}/courses/{{courseId}}/modules", "host": ["{{baseUrl}}"], "path": ["courses", "{{courseId}}", "modules"] },
-            "description": "Public — returns all modules for a course."
+            "description": "Requires auth. Accessible by: admin (any course), teacher (own course), enrolled student."
           }
         },
         {
@@ -166,7 +165,7 @@
               "options": { "raw": { "language": "json" } },
               "raw": "{\n  \"content\": \"My assignment answer goes here\"\n}"
             },
-            "description": "Student submits their work for the assignment attached to this module."
+            "description": "Student submits their work for the assignment attached to this module. Automatically creates a Result record (totalScore: 0) if one does not exist yet."
           }
         },
         {
